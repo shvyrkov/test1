@@ -1,0 +1,60 @@
+      body {
+            background-image: url('img/berez1.jpg');
+            background-size:  auto;
+        }
+        header {
+            padding-top: 8px;
+        }
+        h3 {
+            color: navy;
+            font-style: italic;
+            font-size: 110%;
+            font-weight: bold;
+            text-align: center;
+        }
+        .epigraf {
+            color: rgb(0, 0, 80, 0.8);
+            font-style: italic;
+            font-size: 110%;
+            font-weight: bold;
+        }
+        footer {
+            color: navy;
+            font-size: 150%;
+            font-style: italic;
+            background: rgb(152, 251, 152, 0.6);
+            margin-bottom: 0px;
+            padding-bottom: 8px;
+        }
+        .verse {
+            color: rgb(0, 0, 128);
+            font-style: italic;
+            font-size: 110%;
+            font-weight: bold;
+        }
+        .head_nav {
+            background: rgb(255, 215, 0, 0.6);
+        }
+        .head_nav header h1 {
+            color: navy;
+            font-size: 150%;
+            font-style: italic;
+            text-align: center;
+        }
+        .container {
+            background: rgb(255, 255, 255, 0.6); /*Полупрозрачный фон*/
+            }
+        .balalaika {
+            position: relative;
+            top: 30%; /* Положение от верхнего края */
+        }
+        .btn-buy-abs {/**/
+            position: absolute;
+            bottom: 15px; /* Положение от нижнего края */
+            left: 15px; 
+        }
+        .high {
+            height: 400px;
+            overflow: auto;
+            color: navy;
+        }
