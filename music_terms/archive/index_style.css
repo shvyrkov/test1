@@ -1,0 +1,40 @@
+h3 {
+            color: blue;
+            font-weight: bold;
+            font-style: italic;
+            text-align: center;
+        }
+        h4 {
+            color: teal;
+        }
+        h5 {
+            color: navy;
+            text-align: center;
+        }
+        .container-fluid {
+            height: 700px;
+            background: url(img/noty1.png) no-repeat;
+            background-size: cover; /* Масштабируем фон */
+        }
+        .container {
+            background: rgb(175, 238, 238, 0.6); /*Полупрозрачный фон*/
+        }
+        .row{
+        margin: auto;
+        }
+        .terms {
+            height: 165px;
+            overflow: auto;
+        }
+        .btn {
+            width: 7rem;
+        }
+        .right{
+            color: darkgreen;
+        }
+        .wrong{
+            color: maroon;
+        }
+        .total{
+            color: teal;
+        }
