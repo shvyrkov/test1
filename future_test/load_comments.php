@@ -1,31 +1,28 @@
 <?php
-session_start();
-    include('bd.php'); // Подключение БД
-    // Достаем всё из БД 
-    $result = $mysqli->query("SELECT * FROM `users` ORDER by id DESC"); // $result - двумерный массив
-    $i=0;
-    echo '<meta charset="utf-8"><br>';
-    while ($row = $result->fetch_assoc()) {
-        //echo '<br>user_name: '.$row["name"].'<br>';
-            $user_name = $row["name"];
-            $user_time = $row["time"];
-            $user_date = $row["date"];
-            $user_comment = $row["comment"];
-           // echo '$user_name: '.$user_name.'<br>';
-        echo '<div class="row">
-                <div class="col-sm-2">
-                    <h6 id="user_name" style="font-weight:bold;">'.$user_name.'</h6>
-                </div>
-                <div id="user_time" class="col-sm-1">
-                    <time>'.$user_time.'</time>
-                </div>
-                <div id="user_date" class="col-sm-2">
-                    <date>'.$user_date.'</date>
-                </div>
-            </div>
-            <p id="user_comment" style="font-size:10pt;">'
-                .$user_comment.'
-            </p>';
-            $i++;
-    }
+require_once 'bd_connection.php'; // $dbhost, $dbuser, $dbpass, $dbname Подключение БД
+// Достаем всё из БД 
+$query = "SELECT * FROM `users` ORDER by id DESC";
+
+require_once 'bd_request.php'; // Запрос в БД
+       
+if (!$result) // Если получение данных из таблицы не прошло
+{
+    echo "SELECT failed<br><br>";
+}
+
+$i=0;
+while ($row = $result->fetch_assoc()) 
+{
+    //echo '<br>user_name: '.$row["name"].'<br>';
+        $load_comments[$i]["comment_id"] = htmlspecialchars($row["id"]);
+        $load_comments[$i]["user_name"] = htmlspecialchars($row["name"]);
+        $load_comments[$i]["user_time"] = htmlspecialchars($row["time"]);
+        $load_comments[$i]["user_date"] = htmlspecialchars($row["date"]);
+        $load_comments[$i]["user_comment"] = htmlspecialchars($row["comment"]);
+        $i++;
+        //echo '<br>user_name: '.$load_comments[$i]["user_name"].'<br>';
+}
+    
+$result->close();
+$connection_bd->close();
 ?>
