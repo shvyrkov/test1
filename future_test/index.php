@@ -1,6 +1,3 @@
-<?php
-session_start();
-?>
 <!doctype html>
 <html lang="ru">
   <head>
@@ -10,64 +7,73 @@ session_start();
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <style>
-        body {
-            background-color: lightgrey;
-        }
-        .header {
-            background-color: white;
-        }
-        .chat {
-            border-top: dotted white; 
-            padding-left: 9.5%;  
-            padding-top: 10px; 
-            min-height:230px;
-        }
-        .comment {
-            padding-left: 9.5%;  
-            padding-top: 10px; 
-            height:450px;
-        }
-        .footer {
-            background-color: white;
-        }
-        .footer div {
-            
-        }
-    </style>
+    
+    <link rel="stylesheet" href="css/style.css">
+
     <title>Future test</title>
   </head>
   <body>
     <div class="container-fluid header" >
-        <div class="row " style="margin-left: 7%; margin-right:3%; padding-top: 30px; min-height:225px; ">
+        <div class="row">
             <div class="col-sm-9">
-                <div style="font-weight:bold;" >
-                    <p style="font-size:8pt;">
+                <div class="titles" >
+                    <p>
                         Телефон: +7(499)340-94-71
                     </p>
-                    <p style="font-size:8pt;" >
+                    <p>
                         Email: info@future-group.ru
                     </p>
                 </div>
                 <br><br>
-                <p style="font-size:34pt;">
+                <p class="large_font">
                     Комментарии
                 </p>
             </div>
             <div class="col-sm-3">
-                <img src="img/logo_future.png" alt="future-logo" style="width:80%; margin-bottom:5px;">
+                <img src="img/logo_future.png" alt="future-logo">
             </div>
         </div>
     </div>
 
     <div class="container-fluid chat">
-       <?php include'load_comments.php'; // Загрузка комментариев из БД  ?>
-    </div>
+        
+<?php require_once 'load_comments.php'; // Загрузка комментариев из БД 
+
+    for($i=0; $i<count($load_comments); $i++) {
+        echo '
+            <div class="row">
+                    <div class="col-sm-3">
+                        <span id="user_name" class="user_name">'.$load_comments[$i]["user_name"].'</span>
+                    </div>
+                    <div id="user_time" class="col-sm-1">
+                        <time>'.$load_comments[$i]["user_time"].'</time>
+                    </div>
+                    <div id="user_date" class="col-sm-2">
+                        <date>'.$load_comments[$i]["user_date"].'</date>
+                    </div>
+                    <div  class="col-sm-2">
+                        
+                    </div>
+                    <div id="delete_comment" class="col-sm-2">
+                        <form action="delete_comment.php" method="post">
+                          <input type="hidden" name="delete" value="yes">
+                          <input type="hidden" name="id" value="'.$load_comments[$i]["comment_id"].'">
+                          <input type="submit" value="Удалить комментарий">
+                        </form>
+                    </div>
+            </div>
+            <p id="user_comment" class="user_comment">'
+                .$load_comments[$i]["user_comment"].
+            '</p> '
+            ;
+    }
+?>
+    </div><!--"container-fluid chat"-->
     
     <div class="container-fluid comment">
         <hr>
         <h4>Оставить комментарий</h4>
-        <div style="width:45%;">
+        <div class="comment_form">
             <form method="POST" name="get_comment" action="get_comment.php">
                 <div class="form-group">
                     <label for="form_name">Ваше имя</label>
@@ -75,9 +81,9 @@ session_start();
                 </div>
                 <div class="form-group">
                     <label for="comment">Ваш комментарий</label>
-                    <textarea class="form-control" name="form_comment" id="form_comment" rows="5" style="border: 2px solid black; border-radius: 5px;"></textarea>
+                    <textarea class="form-control comment_field" name="form_comment" id="form_comment" rows="5"></textarea>
                 </div>
-                <button type="submit" class="btn btn-outline-secondary btn-lg" style="float:right; border: 2px solid black; border-radius: 5px;">
+                <button type="submit" class="btn btn-outline-secondary btn-lg">
                     Отправить
                 </button>
             </form>
@@ -85,25 +91,25 @@ session_start();
     </div>
     
     <div class="container-fluid footer mb-0" >
-        <div class="row " style="margin-left: 7%; margin-right:3%; padding-top: 30px; min-height:145px; ">
+        <div class="row">
             
             <div class="col-sm-2">
-                <img src="img/logo_footer_future.png" alt="future-logo" style="width:75%; margin-bottom:5px;">
+                <img src="img/logo_footer_future.png" alt="future-logo">
             </div>
             
             <div class="col-sm-10">
-                <div style="font-weight:bold;" >
-                    <p style="font-size:8pt;">
+                <div class="titles" >
+                    <p>
                         Телефон: +7(499)340-94-71
                     </p>
-                    <p style="font-size:8pt;" >
-                        Email: <span style="text-decoration:underline;">info@future-group.ru</span>
+                    <p>
+                        Email: <span class="underline">info@future-group.ru</span>
                     </p>
-                    <p style="font-size:8pt;">
-                        Адрес: <span style="text-decoration:underline;">115088, Москва, ул.2-я Машиностроения, д.7, стр.1</span>
+                    <p>
+                        Адрес: <span class="underline">115088, Москва, ул.2-я Машиностроения, д.7, стр.1</span>
                     </p>
                 </div>
-                <p style="font-size:8pt;">
+                <p>
                     &copy2010 - 2014 Future. Все права защищены.
                 </p>
             </div>
