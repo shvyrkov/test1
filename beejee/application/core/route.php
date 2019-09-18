@@ -8,43 +8,38 @@ class Route
 		$action_name = 'index';
 		                                                // /beejee/main/add_task
 		$routes = explode('/', $_SERVER['REQUEST_URI']);
-		
-echo '<h3>route.php</h3>';
-echo '<pre><div>   ';
-print_r($routes);
-echo '   </div></pre>';
 
 		// /получаем имя контроллера
 		if ( !empty($routes[2]) )
 		{	
 			$controller_name = $routes[2]; // main
 		}
-echo '<br>&nbsp $controller_name: '.$controller_name.'; &nbsp';	
+//echo '<br>&nbsp $controller_name: '.$controller_name.'; &nbsp';	
 
 		// получаем имя экшена
 		if ( !empty($routes[3]) )
 		{
 			$action_name = $routes[3];
 		}
-echo '&nbsp $action_name: '.$action_name;
+//echo '&nbsp $action_name: '.$action_name;
 
 		// добавляем префиксы
 		$model_name = 'Model_'.$controller_name;
-echo '<br>&nbsp $model_name: '.$model_name; // $model_name: Model_main
+//echo '<br>&nbsp $model_name: '.$model_name; // $model_name: Model_main
 
 		$controller_name = 'Controller_'.$controller_name;
-echo '<br>&nbsp $controller_name: '.$controller_name.'; &nbsp'; // $controller_name: Controller_main; 
+//echo '<br>&nbsp $controller_name: '.$controller_name.'; &nbsp'; // $controller_name: Controller_main; 
 
 		$action_name = 'action_'.$action_name;
-echo '&nbsp $action_name: '.$action_name; //  $action_name: action_add_task
-echo '<br>';
+//echo '&nbsp $action_name: '.$action_name; //  $action_name: action_add_task
+//echo '<br>';
 
 		// подцепляем файл с классом модели (файла модели может и не быть)
 		$model_file = strtolower($model_name).'.php';
 //echo '<br>&nbsp $model_file: '.$model_file;
 
 		$model_path = "application/models/".$model_file;
-echo '<br>&nbsp $model_path: '.$model_path;
+//echo '<br>&nbsp $model_path: '.$model_path;
 		if(file_exists($model_path))
 		{
 			include "application/models/".$model_file;
@@ -54,7 +49,7 @@ echo '<br>&nbsp $model_path: '.$model_path;
 		$controller_file = strtolower($controller_name).'.php';
 //echo '<br>&nbsp $controller_file: '.$controller_file;
 		$controller_path = "application/controllers/".$controller_file;
-echo '<br>&nbsp $controller_path: '.$controller_path.'<br><br>';
+//echo '<br>&nbsp $controller_path: '.$controller_path.'<br><br>';
 		if(file_exists($controller_path))
 		{
 			include "application/controllers/".$controller_file;
@@ -83,7 +78,6 @@ echo '<br>&nbsp $controller_path: '.$controller_path.'<br><br>';
 			// здесь также разумнее было бы кинуть исключение
 			Route::ErrorPage404();
 		}
-	
 	}
 	
 	function ErrorPage404()
