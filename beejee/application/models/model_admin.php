@@ -85,9 +85,6 @@ class Model_admin extends Model
                 $load_task["task_text"] = $row["task"];
                 $load_task["task_status"] = htmlspecialchars($row["status"]);
                 $load_task["task_edited"] = htmlspecialchars($row["edited"]);
-echo '<pre>';
-print_r ($load_task);
-echo '</pre>';
 
         return $load_task;
 	} // Method
